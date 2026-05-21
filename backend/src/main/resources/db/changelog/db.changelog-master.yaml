@@ -51,15 +51,9 @@ databaseChangeLog:
       id: 2
       author: marshall (generated)
       changes:
-        - sql:
-            dbms: postgresql
-            sql: ALTER SEQUENCE users_id_seq RESTART WITH 2;
         - insert:
             tableName: users
             columns:
-              - column:
-                  name: id
-                  value: 1
               - column:
                   name: username
                   value: '_system_'
