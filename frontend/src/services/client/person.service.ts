@@ -8,8 +8,8 @@ export const PersonService = {
     return [];
   },
 
-  async searchPersons(query: string, page = 0, size = 10) {
-    const response = await fetch(`/api/persons?q=${encodeURIComponent(query)}&page=${page}&size=${size}`);
+  async searchPersons(query: string, page = 0, size = 10, status: string = '1') {
+    const response = await fetch(`/api/persons?q=${encodeURIComponent(query)}&page=${page}&size=${size}&status=${status}`);
     if (response.ok) return await response.json() as Person[];
     return [];
   },

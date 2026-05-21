@@ -18,23 +18,23 @@ public class PersonService {
 
     private final PersonRepo personRepo;
 
-    public List<Person> getAllPersons(String statuses, int page, int size) {
+    public List<Person> getAllPersons(String status, int page, int size) {
 
-        Set<Status> statusSet = parseStatuses(statuses);
+        Set<Status> statuses = parseStatuses(status);
 
         return personRepo.findAllByStatusIn(
-                statusSet,
+                statuses,
                 PageRequest.of(page, size, Sort.by("status").descending())
         ).getContent();
 
     }
 
-    public List<Person> searchPersons(String query, String statuses, int page, int size) {
+    public List<Person> searchPersons(String query, String status, int page, int size) {
 
-        Set<Status> statusSet = parseStatuses(statuses);
+        Set<Status> statuses = parseStatuses(status);
 
         return personRepo.searchWithStatus(
-                statusSet,
+                statuses,
                 query,
                 PageRequest.of(page, size, Sort.by("name").ascending())
         ).getContent();

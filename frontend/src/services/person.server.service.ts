@@ -15,8 +15,8 @@ export const PersonServerService = {
     return [];
   },
 
-  async searchPersons(query: string, page = 0, size = 10) {
-    const response = await PPServiceAdapter.request("GET", personSearch, { q: query, page, size });
+  async searchPersons(query: string, page = 0, size = 10, status: string = '1') {
+    const response = await PPServiceAdapter.request("GET", personSearch, { q: query, page, size, status });
 
     if (response?.status === HttpStatusCode.Ok) return response.body as Person[];
 

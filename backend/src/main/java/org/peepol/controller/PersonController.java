@@ -21,13 +21,13 @@ public class PersonController {
 
     @GetMapping()
     public ResponseEntity<List<PersonDTO.Response>> getPersons(
-            @Nullable @RequestParam("status") String statuses,
+            @Nullable @RequestParam("status") String status,
             @Nullable @RequestParam("page") Integer page,
             @Nullable @RequestParam("size") Integer size
     ) {
 
         var persons = personService.getAllPersons(
-                statuses,
+                status,
                 Objects.nonNull(page) ? page : 0,
                 Objects.nonNull(size) ? size : 10
         );
@@ -42,13 +42,13 @@ public class PersonController {
     @GetMapping("/search")
     public ResponseEntity<List<PersonDTO.Response>> searchPersons(
             @RequestParam("q") String query,
-            @Nullable @RequestParam("status") String statuses,
+            @Nullable @RequestParam("status") String status,
             @Nullable @RequestParam("page") Integer page,
             @Nullable @RequestParam("size") Integer size
     ) {
         var persons = personService.searchPersons(
                 query,
-                statuses,
+                status,
                 Objects.nonNull(page) ? page : 0,
                 Objects.nonNull(size) ? size : 10
         );
