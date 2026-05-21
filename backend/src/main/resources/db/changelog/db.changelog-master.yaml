@@ -1,0 +1,118 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: marshall (generated)
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: VARCHAR(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: SMALLINT
+              - column:
+                  name: created_by
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITHOUT TIME ZONE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_by
+                  type: VARCHAR(30)
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP WITHOUT TIME ZONE
+  - changeSet:
+      id: 2
+      author: marshall (generated)
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: username
+                  value: '_system_'
+              - column:
+                  name: password
+                  value: 'todo_define'
+              - column:
+                  name: role
+                  value: 'ADMIN'
+              - column:
+                  name: status
+                  value: 1
+              - column:
+                  name: created_by
+                  value: '_system_'
+              - column:
+                  name: created_at
+                  valueComputed: 'now()'
+  - changeSet:
+      id: 3
+      author: marshall (generated)
+      changes:
+        - createTable:
+            tableName: persons
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone_number
+                  type: VARCHAR(15)
+              - column:
+                  name: bio
+                  type: TEXT
+              - column:
+                  name: status
+                  type: SMALLINT
+              - column:
+                  name: created_by
+                  type: VARCHAR(30)
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: updated_by
+                  type: VARCHAR(30)
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP WITHOUT TIME ZONE
+  - include:
+      file: db/changelog/db.changelog-data-persons.yaml
