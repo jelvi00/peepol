@@ -20,8 +20,6 @@ import java.util.List;
 @Configuration
 public class SecurityConfig {
 
-    private final String BASE_URL = "/peepol-api";
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new SCryptPasswordEncoder(16384, 8, 1, 32, 16);
@@ -38,8 +36,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(BASE_URL.concat("/auth/login"), BASE_URL.concat("/admin/auth/login")).anonymous()
-                        .requestMatchers(BASE_URL.concat("/admin/**")).hasRole("ADMIN")
+                        .requestMatchers("/auth/login", "/admin/auth/login").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(pasetoAuthFilter, UsernamePasswordAuthenticationFilter.class)

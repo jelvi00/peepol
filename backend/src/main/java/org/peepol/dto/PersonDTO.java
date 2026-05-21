@@ -1,6 +1,7 @@
 package org.peepol.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -18,7 +19,7 @@ public class PersonDTO {
     ) {}
 
     public record UpdateRequest(
-            @NotBlank Long id,
+            @NotNull Long id,
 
             @Size(min = 3, max = 60) String name,
 

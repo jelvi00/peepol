@@ -51,6 +51,9 @@ databaseChangeLog:
       id: 2
       author: marshall (generated)
       changes:
+        - sql:
+            dbms: postgresql
+            sql: ALTER SEQUENCE users_id_seq RESTART WITH 2;
         - insert:
             tableName: users
             columns:
@@ -62,7 +65,7 @@ databaseChangeLog:
                   value: '_system_'
               - column:
                   name: password
-                  value: 'todo_define'
+                  value: '$e0801$b7kEyowVMFrrKW2Rif/NYg==$mRSe1dZ909reaFcrd4kK7vJQphcBYdp8z41/3gD852g='
               - column:
                   name: role
                   value: 'ADMIN'
