@@ -12,9 +12,9 @@ spring:
     name: peepol
 
   datasource:
-    url: jdbc:postgresql://db:5432/peepol
-    username: todo_define
-    password: todo_define
+    url: ${SPRING_DATASOURCE_URL:no-conn}
+    username: ${SPRING_DATASOURCE_USERNAME:no-username}
+    password: ${SPRING_DATASOURCE_PASSWORD:no-pass}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -29,3 +29,7 @@ spring:
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
     enabled: true
+
+app:
+  paseto:
+    secret_key: ${PASETO_SECRET_KEY:no-key}

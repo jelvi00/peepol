@@ -16,3 +16,7 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
+
+app:
+  paseto:
+    secret_key: 12345678901234567890123456789012
