@@ -5,7 +5,7 @@ import { HttpStatusCode } from "axios";
 
 const { persons, personSearch, personDetail, personRemove } = API_V1.PERSONS;
 
-export const PersonServerService = {
+export const PersonService = {
 
   async getPersons(page = 0, size = 10, status: string = '1') {
     const response = await PPServiceAdapter.request("GET", persons, { page, size, status });

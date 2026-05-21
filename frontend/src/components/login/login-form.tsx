@@ -43,8 +43,7 @@ export function LoginForm() {
         try {
           PPEventEmitter.emit(EVENT.ON_LOGIN, state.content?.user);
 
-          const userRole = state.content?.user?.role;
-          await loadInitialData(userRole);
+          await loadInitialData();
 
           console.log("LoginForm - Post-login data loading completed successfully");
 

@@ -1,6 +1,6 @@
 import type { Person, PersonAddRequest, PersonUpdateRequest } from "@/types";
 
-export const PersonService = {
+export const PersonCliService = {
 
   async getPersons(page = 0, size = 10, status: string = '1') {
     const response = await fetch(`/api/persons?page=${page}&size=${size}&status=${status}`);
