@@ -1,0 +1,31 @@
+server:
+  port: 4556
+  servlet:
+    context-path: /peepol-api
+
+spring:
+  threads:
+    virtual:
+      enabled: true
+
+  application:
+    name: peepol
+
+  datasource:
+    url: jdbc:postgresql://db:5432/peepol
+    username: todo_define
+    password: todo_define
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    enabled: true
