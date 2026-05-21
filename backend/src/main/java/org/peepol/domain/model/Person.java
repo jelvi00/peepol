@@ -2,6 +2,8 @@ package org.peepol.domain.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import org.peepol.dto.PersonDTO;
 
 @Entity
@@ -20,10 +22,11 @@ public final class Person extends Audit {
     @Column(nullable = false, length = 30)
     private String name;
 
-    @Column(unique = true, name = "phone_number", length = 40)
+    @Column(unique = true, length = 40)
     private String phoneNumber;
 
     @Lob
+    @JdbcTypeCode(SqlTypes.LONGVARCHAR)
     @Column(columnDefinition = "TEXT")
     private String bio;
 

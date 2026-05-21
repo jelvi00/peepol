@@ -55,6 +55,7 @@ public class PersonService {
                 Person.builder()
                         .name(request.name())
                         .phoneNumber(request.phoneNumber().toLowerCase())
+                        .bio(request.bio())
                         .build()
         );
 
@@ -71,16 +72,17 @@ public class PersonService {
         if (byIdPerson.getStatus().equals(Status.DISABLED))
             throw new IllegalArgumentException("Person is already removed.");
 
-        var byEmailPerson = Objects.nonNull(request.phoneNumber())
+        var byPhonePerson = Objects.nonNull(request.phoneNumber())
                 ? personRepo.findByPhoneNumber(request.phoneNumber().toLowerCase())
                 : null;
 
-        if (Objects.nonNull(byEmailPerson)
-                && !Objects.equals(byEmailPerson.getId().toString(), byIdPerson.getId().toString()))
-            throw new IllegalArgumentException("Email is not available.");
+        if (Objects.nonNull(byPhonePerson)
+                && !Objects.equals(byPhonePerson.getId().toString(), byIdPerson.getId().toString()))
+            throw new IllegalArgumentException("Phone number is not available.");
 
         if (Objects.nonNull(request.name())) byIdPerson.setName(request.name());
         if (Objects.nonNull(request.phoneNumber())) byIdPerson.setPhoneNumber(request.phoneNumber().toLowerCase());
+        if (Objects.nonNull(request.bio())) byIdPerson.setBio(request.bio().toLowerCase());
 
         return personRepo.save(byIdPerson);
 
