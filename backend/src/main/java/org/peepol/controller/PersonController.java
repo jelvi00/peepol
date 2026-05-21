@@ -42,11 +42,13 @@ public class PersonController {
     @GetMapping("/search")
     public ResponseEntity<List<PersonDTO.Response>> searchPersons(
             @RequestParam("q") String query,
+            @Nullable @RequestParam("status") String statuses,
             @Nullable @RequestParam("page") Integer page,
             @Nullable @RequestParam("size") Integer size
     ) {
         var persons = personService.searchPersons(
                 query,
+                statuses,
                 Objects.nonNull(page) ? page : 0,
                 Objects.nonNull(size) ? size : 10
         );

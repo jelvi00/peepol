@@ -20,13 +20,7 @@ public class PersonService {
 
     public List<Person> getAllPersons(String statuses, int page, int size) {
 
-        if (Objects.isNull(statuses) || statuses.isBlank()) statuses = "1";
-
-        Set<Status> statusSet = statuses.contains(",")
-                ? Arrays.stream(statuses.split(","))
-                        .map(s -> Status.fromId(Integer.parseInt(s.trim())))
-                        .collect(Collectors.toSet())
-                : Collections.singleton(Status.fromId(Integer.parseInt(statuses)));
+        Set<Status> statusSet = parseStatuses(statuses);
 
         return personRepo.findAllByStatusIn(
                 statusSet,
@@ -35,9 +29,12 @@ public class PersonService {
 
     }
 
-    public List<Person> searchPersons(String query, int page, int size) {
-        return personRepo.findByNameContainingIgnoreCaseOrPhoneNumberContainingIgnoreCase(
-                query,
+    public List<Person> searchPersons(String query, String statuses, int page, int size) {
+
+        Set<Status> statusSet = parseStatuses(statuses);
+
+        return personRepo.searchWithStatus(
+                statusSet,
                 query,
                 PageRequest.of(page, size, Sort.by("name").ascending())
         ).getContent();
@@ -100,6 +97,16 @@ public class PersonService {
         person.setStatus(Status.DISABLED);
 
         return personRepo.save(person);
+    }
+
+    private Set<Status> parseStatuses(String statuses) {
+        if (Objects.isNull(statuses) || statuses.isBlank()) statuses = "1";
+
+        return statuses.contains(",")
+                ? Arrays.stream(statuses.split(","))
+                .map(s -> Status.fromId(Integer.parseInt(s.trim())))
+                .collect(Collectors.toSet())
+                : Collections.singleton(Status.fromId(Integer.parseInt(statuses)));
     }
 
 }
