@@ -12,6 +12,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import org.springframework.web.servlet.resource.NoResourceFoundException;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,9 +31,19 @@ class GlobalExceptionHandlerTest {
     }
 
     @Test
-    void handleHttpRequestMethodNotSupported() {
+    void handleNoResourceFound() {
+        NoResourceFoundException ex = mock(NoResourceFoundException.class);
+        ResponseEntity<ProblemDetail> response = globalExceptionHandler.handleNoResourceFound(ex);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertEquals("Not found.", response.getBody().getDetail());
+    }
+
+    @Test
+    void handleMethodNotSupported() {
         HttpRequestMethodNotSupportedException ex = mock(HttpRequestMethodNotSupportedException.class);
-        ResponseEntity<ProblemDetail> response = globalExceptionHandler.handleMissingBody(ex);
+        ResponseEntity<ProblemDetail> response = globalExceptionHandler.handleMethodNotSupported(ex);
 
         assertEquals(HttpStatus.METHOD_NOT_ALLOWED, response.getStatusCode());
         assertNotNull(response.getBody());
@@ -39,9 +51,9 @@ class GlobalExceptionHandlerTest {
     }
 
     @Test
-    void handleMissingBody() {
+    void handleHttpMessageNotReadable() {
         HttpMessageNotReadableException ex = mock(HttpMessageNotReadableException.class);
-        ResponseEntity<ProblemDetail> response = globalExceptionHandler.handleMissingBody(ex);
+        ResponseEntity<ProblemDetail> response = globalExceptionHandler.handleHttpMessageNotReadable(ex);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertNotNull(response.getBody());
