@@ -8,7 +8,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Juan Garcia' }
               - column: { name: phone_number, value: '+34 600000001' }
-              - column: { name: bio, value: 'Bio de Juan Garcia' }
+              - column: { name: bio, value: 'Bio of Juan Garcia' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -17,7 +17,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Maria Rodriguez' }
               - column: { name: phone_number, value: '+34 600000002' }
-              - column: { name: bio, value: 'Bio de Maria Rodriguez' }
+              - column: { name: bio, value: 'Bio of Maria Rodriguez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -26,7 +26,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Pedro Gonzalez' }
               - column: { name: phone_number, value: '+34 600000003' }
-              - column: { name: bio, value: 'Bio de Pedro Gonzalez' }
+              - column: { name: bio, value: 'Bio of Pedro Gonzalez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -35,7 +35,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Ana Fernandez' }
               - column: { name: phone_number, value: '+34 600000004' }
-              - column: { name: bio, value: 'Bio de Ana Fernandez' }
+              - column: { name: bio, value: 'Bio of Ana Fernandez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -44,7 +44,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Luis Lopez' }
               - column: { name: phone_number, value: '+34 600000005' }
-              - column: { name: bio, value: 'Bio de Luis Lopez' }
+              - column: { name: bio, value: 'Bio of Luis Lopez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -53,7 +53,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Elena Martinez' }
               - column: { name: phone_number, value: '+34 600000006' }
-              - column: { name: bio, value: 'Bio de Elena Martinez' }
+              - column: { name: bio, value: 'Bio of Elena Martinez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -62,7 +62,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Carlos Sanchez' }
               - column: { name: phone_number, value: '+34 600000007' }
-              - column: { name: bio, value: 'Bio de Carlos Sanchez' }
+              - column: { name: bio, value: 'Bio of Carlos Sanchez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -71,7 +71,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Sofia Perez' }
               - column: { name: phone_number, value: '+34 600000008' }
-              - column: { name: bio, value: 'Bio de Sofia Perez' }
+              - column: { name: bio, value: 'Bio of Sofia Perez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -80,7 +80,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Diego Gomez' }
               - column: { name: phone_number, value: '+34 600000009' }
-              - column: { name: bio, value: 'Bio de Diego Gomez' }
+              - column: { name: bio, value: 'Bio of Diego Gomez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -89,7 +89,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Lucia Martin' }
               - column: { name: phone_number, value: '+34 600000010' }
-              - column: { name: bio, value: 'Bio de Lucia Martin' }
+              - column: { name: bio, value: 'Bio of Lucia Martin' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -98,7 +98,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Jose Jimenez' }
               - column: { name: phone_number, value: '+34 600000011' }
-              - column: { name: bio, value: 'Bio de Jose Jimenez' }
+              - column: { name: bio, value: 'Bio of Jose Jimenez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -107,7 +107,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Carmen Ruiz' }
               - column: { name: phone_number, value: '+34 600000012' }
-              - column: { name: bio, value: 'Bio de Carmen Ruiz' }
+              - column: { name: bio, value: 'Bio of Carmen Ruiz' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -116,7 +116,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Miguel Hernandez' }
               - column: { name: phone_number, value: '+34 600000013' }
-              - column: { name: bio, value: 'Bio de Miguel Hernandez' }
+              - column: { name: bio, value: 'Bio of Miguel Hernandez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -125,7 +125,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Isabel Diaz' }
               - column: { name: phone_number, value: '+34 600000014' }
-              - column: { name: bio, value: 'Bio de Isabel Diaz' }
+              - column: { name: bio, value: 'Bio of Isabel Diaz' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -134,7 +134,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Javier Moreno' }
               - column: { name: phone_number, value: '+34 600000015' }
-              - column: { name: bio, value: 'Bio de Javier Moreno' }
+              - column: { name: bio, value: 'Bio of Javier Moreno' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -143,7 +143,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Paula Muñoz' }
               - column: { name: phone_number, value: '+34 600000016' }
-              - column: { name: bio, value: 'Bio de Paula Muñoz' }
+              - column: { name: bio, value: 'Bio of Paula Muñoz' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -152,7 +152,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Andres Alvarez' }
               - column: { name: phone_number, value: '+34 600000017' }
-              - column: { name: bio, value: 'Bio de Andres Alvarez' }
+              - column: { name: bio, value: 'Bio of Andres Alvarez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -161,7 +161,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Marta Romero' }
               - column: { name: phone_number, value: '+34 600000018' }
-              - column: { name: bio, value: 'Bio de Marta Romero' }
+              - column: { name: bio, value: 'Bio of Marta Romero' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -170,7 +170,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Fernando Alonso' }
               - column: { name: phone_number, value: '+34 600000019' }
-              - column: { name: bio, value: 'Bio de Fernando Alonso' }
+              - column: { name: bio, value: 'Bio of Fernando Alonso' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -179,7 +179,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Rosa Gutierrez' }
               - column: { name: phone_number, value: '+34 600000020' }
-              - column: { name: bio, value: 'Bio de Rosa Gutierrez' }
+              - column: { name: bio, value: 'Bio of Rosa Gutierrez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -188,7 +188,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Roberto Navarro' }
               - column: { name: phone_number, value: '+34 600000021' }
-              - column: { name: bio, value: 'Bio de Roberto Navarro' }
+              - column: { name: bio, value: 'Bio of Roberto Navarro' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -197,7 +197,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Beatriz Torres' }
               - column: { name: phone_number, value: '+34 600000022' }
-              - column: { name: bio, value: 'Bio de Beatriz Torres' }
+              - column: { name: bio, value: 'Bio of Beatriz Torres' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -206,7 +206,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Ignacio Dominguez' }
               - column: { name: phone_number, value: '+34 600000023' }
-              - column: { name: bio, value: 'Bio de Ignacio Dominguez' }
+              - column: { name: bio, value: 'Bio of Ignacio Dominguez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -215,7 +215,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Laura Vazquez' }
               - column: { name: phone_number, value: '+34 600000024' }
-              - column: { name: bio, value: 'Bio de Laura Vazquez' }
+              - column: { name: bio, value: 'Bio of Laura Vazquez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -224,7 +224,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Francisco Ramos' }
               - column: { name: phone_number, value: '+34 600000025' }
-              - column: { name: bio, value: 'Bio de Francisco Ramos' }
+              - column: { name: bio, value: 'Bio of Francisco Ramos' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -233,7 +233,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Patricia Gil' }
               - column: { name: phone_number, value: '+34 600000026' }
-              - column: { name: bio, value: 'Bio de Patricia Gil' }
+              - column: { name: bio, value: 'Bio of Patricia Gil' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -242,7 +242,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Manuel Ramirez' }
               - column: { name: phone_number, value: '+34 600000027' }
-              - column: { name: bio, value: 'Bio de Manuel Ramirez' }
+              - column: { name: bio, value: 'Bio of Manuel Ramirez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -251,7 +251,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Silvia Blanco' }
               - column: { name: phone_number, value: '+34 600000028' }
-              - column: { name: bio, value: 'Bio de Silvia Blanco' }
+              - column: { name: bio, value: 'Bio of Silvia Blanco' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -260,7 +260,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Alberto Molina' }
               - column: { name: phone_number, value: '+34 600000029' }
-              - column: { name: bio, value: 'Bio de Alberto Molina' }
+              - column: { name: bio, value: 'Bio of Alberto Molina' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -269,7 +269,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Cristina Morales' }
               - column: { name: phone_number, value: '+34 600000030' }
-              - column: { name: bio, value: 'Bio de Cristina Morales' }
+              - column: { name: bio, value: 'Bio of Cristina Morales' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -278,7 +278,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Jorge Suaréz' }
               - column: { name: phone_number, value: '+34 600000031' }
-              - column: { name: bio, value: 'Bio de Jorge Suaréz' }
+              - column: { name: bio, value: 'Bio of Jorge Suaréz' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -287,7 +287,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Lorena Ortega' }
               - column: { name: phone_number, value: '+34 600000032' }
-              - column: { name: bio, value: 'Bio de Lorena Ortega' }
+              - column: { name: bio, value: 'Bio of Lorena Ortega' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -296,7 +296,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Ricardo Delgado' }
               - column: { name: phone_number, value: '+34 600000033' }
-              - column: { name: bio, value: 'Bio de Ricardo Delgado' }
+              - column: { name: bio, value: 'Bio of Ricardo Delgado' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -305,7 +305,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Esther Castro' }
               - column: { name: phone_number, value: '+34 600000034' }
-              - column: { name: bio, value: 'Bio de Esther Castro' }
+              - column: { name: bio, value: 'Bio of Esther Castro' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -314,7 +314,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Raul Ortiz' }
               - column: { name: phone_number, value: '+34 600000035' }
-              - column: { name: bio, value: 'Bio de Raul Ortiz' }
+              - column: { name: bio, value: 'Bio of Raul Ortiz' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -323,7 +323,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Alicia Rubio' }
               - column: { name: phone_number, value: '+34 600000036' }
-              - column: { name: bio, value: 'Bio de Alicia Rubio' }
+              - column: { name: bio, value: 'Bio of Alicia Rubio' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -332,7 +332,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Pablo Marin' }
               - column: { name: phone_number, value: '+34 600000037' }
-              - column: { name: bio, value: 'Bio de Pablo Marin' }
+              - column: { name: bio, value: 'Bio of Pablo Marin' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -341,7 +341,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Irene Sanz' }
               - column: { name: phone_number, value: '+34 600000038' }
-              - column: { name: bio, value: 'Bio de Irene Sanz' }
+              - column: { name: bio, value: 'Bio of Irene Sanz' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -350,7 +350,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Marcos Nuñez' }
               - column: { name: phone_number, value: '+34 600000039' }
-              - column: { name: bio, value: 'Bio de Marcos Nuñez' }
+              - column: { name: bio, value: 'Bio of Marcos Nuñez' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }
@@ -359,7 +359,7 @@ databaseChangeLog:
             columns:
               - column: { name: name, value: 'Julia Iglesias' }
               - column: { name: phone_number, value: '+34 600000040' }
-              - column: { name: bio, value: 'Bio de Julia Iglesias' }
+              - column: { name: bio, value: 'Bio of Julia Iglesias' }
               - column: { name: status, value: 1 }
               - column: { name: created_by, value: '_system_' }
               - column: { name: created_at, valueComputed: 'now()' }

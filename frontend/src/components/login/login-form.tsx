@@ -76,7 +76,7 @@ export function LoginForm() {
           <input
             className="bg-light-blue px-14 py-3 rounded-full w-full"
             name="username"
-            placeholder="Nombre de usuario"
+            placeholder="Username"
             required
             disabled={showLoadingOverlay}
           />
@@ -97,7 +97,7 @@ export function LoginForm() {
             className="bg-light-blue px-7 py-3 rounded-full w-full"
             type={showPassword ? "text" : "password"}
             name="password"
-            placeholder="Contraseña"
+            placeholder="Password"
             required
             disabled={showLoadingOverlay}
           />
@@ -108,10 +108,10 @@ export function LoginForm() {
           disabled={showLoadingOverlay}
         >
           {isPending
-            ? "Ingresando..."
+            ? "Signing in..."
             : isLoadingData
             ? loadingState.currentStep
-            : "Ingresar"}
+            : "Sign in"}
         </button>
 
         <section className="flex items-center justify-center">
@@ -132,7 +132,7 @@ export function LoginForm() {
             {/* Current Step */}
             <div className="space-y-2">
               <p className="text-gray-700 font-medium">
-                {isPending ? "Iniciando sesión..." : loadingState.currentStep}
+                {isPending ? "Signing in..." : loadingState.currentStep}
               </p>
 
               {/* Progress Bar */}
@@ -148,7 +148,7 @@ export function LoginForm() {
               {/* Progress Percentage */}
               {isLoadingData && (
                 <p className="text-sm text-gray-500">
-                  {loadingState.progress}% completado
+                  {loadingState.progress}% completed
                 </p>
               )}
             </div>

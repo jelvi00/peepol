@@ -30,7 +30,7 @@ export const PersonCliService = {
     const data = await response.json();
     if (response.ok) return data as Person;
 
-    throw new Error(data.message || "Error al crear persona");
+    throw new Error(data.message || "Error creating person");
   },
 
   async updatePerson(person: PersonUpdateRequest) {
@@ -43,7 +43,7 @@ export const PersonCliService = {
     const data = await response.json();
     if (response.ok) return data as Person;
 
-    throw new Error(data.message || "Error al actualizar persona");
+    throw new Error(data.message || "Error updating person");
   },
 
   async deletePerson(id: number) {
@@ -54,6 +54,6 @@ export const PersonCliService = {
     const data = await response.json();
     if (response.ok) return data;
 
-    throw new Error(data.message || "Error al eliminar persona");
+    throw new Error(data.message || "Error deleting person");
   },
 };

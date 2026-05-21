@@ -33,7 +33,7 @@ export async function loginAction(
 
   return {
     success: Boolean(user?.id),
-    error: Boolean(user?.id) ? "" : "No es posible completar la acción",
+    error: Boolean(user?.id) ? "" : "Unable to complete action",
     content: { user: user || {} },
   };
 }

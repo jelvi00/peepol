@@ -13,12 +13,12 @@ export async function middleware(request: NextRequest) {
 export const config = {
     matcher: [
         /*
-         * Aplicar middleware a todas las rutas excepto las que empiecen con:
+         * Apply middleware to all routes except those starting with:
          * - api (API routes)
          * - _next/static (static files)
          * - _next/image (image optimization files)
          * - favicon.ico
-         * - Archivos con extensiones comunes
+         * - Files with common extensions
          */
         '/((?!api|_next/static|_next/image|favicon.ico||icon-.*\\.png|.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.svg|.*\\.ico).*)',
     ],

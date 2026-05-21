@@ -36,7 +36,7 @@ export const PersonService = {
     if (response?.status === HttpStatusCode.Ok || response?.status === HttpStatusCode.Created)
       return response.body as Person;
 
-    throw new Error(response?.body?.message || "Error al crear persona");
+    throw new Error(response?.body?.message || "Error creating person");
   },
 
   async updatePerson(person: PersonUpdateRequest) {
@@ -44,7 +44,7 @@ export const PersonService = {
 
     if (response?.status === HttpStatusCode.Ok) return response.body as Person;
 
-    throw new Error(response?.body?.message || "Error al actualizar persona");
+    throw new Error(response?.body?.message || "Error updating person");
   },
 
   async deletePerson(id: number) {
@@ -52,6 +52,6 @@ export const PersonService = {
 
     if (response?.status === HttpStatusCode.Ok) return response.body;
 
-    throw new Error(response?.body?.message || "Error al eliminar persona");
+    throw new Error(response?.body?.message || "Error deleting person");
   },
 };
