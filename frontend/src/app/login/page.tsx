@@ -12,7 +12,7 @@ export default async function Login() {
                 <section
                     className="w-150 bg-white rounded-lg drop-shadow-lg flex gap-5 flex-col items-center p-20">
                     <section className={'z-1 flex flex-col items-center'}>
-                        <h1 className="text-basic-red my-1 font-sans text-[24px]">
+                        <h1 className="text-blue-300 my-1 font-sans text-[24px] mb-2">
                             {'Peepol Login'}
                         </h1>
                         <LoginForm />

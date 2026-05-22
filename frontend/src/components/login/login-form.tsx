@@ -91,7 +91,7 @@ export function LoginForm() {
             }`}
             disabled={showLoadingOverlay}
           >
-            <SVG name={"eye-gray"} />
+            <SVG name={showPassword ? "eye-slash" : "eye"} />
           </button>
           <input
             className="bg-light-blue px-7 py-3 rounded-full w-full"
@@ -104,7 +104,7 @@ export function LoginForm() {
         </div>
 
         <button
-          className="font-sans text-white bg-basic-red w-full py-3 rounded-full disabled:opacity-50"
+          className="font-sans text-white bg-blue-300 w-full py-3 rounded-full disabled:opacity-50"
           disabled={showLoadingOverlay}
         >
           {isPending
@@ -115,9 +115,9 @@ export function LoginForm() {
         </button>
 
         <section className="flex items-center justify-center">
-          {state.error && <p className="text-red-500">{state.error}</p>}
+          {state.error && <p className="text-blue-500">{state.error}</p>}
           {loadingState.error && (
-            <p className="text-red-500">{loadingState.error}</p>
+            <p className="text-blue-500">{loadingState.error}</p>
           )}
         </section>
       </form>
@@ -127,7 +127,7 @@ export function LoginForm() {
         <div className="absolute inset-0 bg-white bg-opacity-90 flex flex-col items-center justify-center rounded-lg z-10">
           <div className="text-center space-y-4">
             {/* Loading Spinner */}
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-basic-red mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-300 mx-auto"></div>
 
             {/* Current Step */}
             <div className="space-y-2">
@@ -139,7 +139,7 @@ export function LoginForm() {
               {isLoadingData && (
                 <div className="w-64 bg-gray-200 rounded-full h-2">
                   <div
-                    className="bg-basic-red h-2 rounded-full transition-all duration-300 ease-out"
+                    className="bg-blue-300 h-2 rounded-full transition-all duration-300 ease-out"
                     style={{ width: `${loadingState.progress}%` }}
                   ></div>
                 </div>

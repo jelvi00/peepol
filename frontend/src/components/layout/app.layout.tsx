@@ -6,6 +6,7 @@ import { logoutAction } from "@/actions/auth.action";
 import { PPEventEmitter } from "@/providers/use-react-app";
 import { EVENT } from "@/constants";
 import { doNothing } from "@/lib";
+import { SVG } from "@/components";
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -29,13 +30,13 @@ export function AppLayout({ children }: AppLayoutProps) {
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
                 <span className="text-sm font-light">{session.username}</span>
-                <div className="w-8 h-8 bg-basic-red rounded-full flex items-center justify-center text-white text-xs uppercase">
-                  {session.role ? session.role[0] : 'U'}
+                <div className="w-8 h-8 bg-blue-300 rounded-full flex items-center justify-center text-white text-xs uppercase">
+                  <SVG name="user" className="invert" />
                 </div>
               </div>
               <button
                 onClick={logout}
-                className="text-sm text-medium-grey hover:text-basic-red transition-colors font-sans flex items-center gap-1">
+                className="text-sm text-medium-grey hover:text-blue-500 transition-colors font-sans flex items-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>
