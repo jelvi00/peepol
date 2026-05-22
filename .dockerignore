@@ -1,0 +1,12 @@
+.gradle
+build
+**/build
+node_modules
+**/.next
+**/out
+.idea
+*.log
+.git
+frontend/node_modules
+frontend/.next
+backend/build

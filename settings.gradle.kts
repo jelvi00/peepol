@@ -8,4 +8,7 @@ pluginManagement {
 }
 
 include("backend")
-include("frontend")
+
+if (file("frontend").exists()) {
+    include(":frontend")
+}
