@@ -24,7 +24,7 @@ public class PersonService {
 
         return personRepo.findAllByStatusIn(
                 statuses,
-                PageRequest.of(page, size, Sort.by("status").descending())
+                PageRequest.of(page, size, Sort.by("id").ascending())
         ).getContent();
 
     }
@@ -36,7 +36,7 @@ public class PersonService {
         return personRepo.searchWithStatus(
                 statuses,
                 query,
-                PageRequest.of(page, size, Sort.by("name").ascending())
+                PageRequest.of(page, size, Sort.by("id").ascending())
         ).getContent();
     }
 

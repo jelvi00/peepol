@@ -130,7 +130,7 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {persons.map((person) => (
-            <Link key={person.phoneNumber} href={`/dashboard/person/${person.id}`}>
+            <Link key={person.id} href={`/dashboard/person/${person.id}`}>
               <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-transparent hover:border-blue-300 group">
                 <div className={"row-span-2 flex"}>
                   <div className="w-16 h-16 bg-light-blue rounded-full mb-4 flex items-center justify-center text-blue-500 font-sans text-xl group-hover:bg-blue-300 transition-colors">
