@@ -22,7 +22,7 @@ const initialState: LoginState = {
   content: { user: {} },
 };
 
-export function LoginForm() {
+export function LoginForm({ admin }: { admin?: boolean }) {
   const router = useRouter();
   const { loadingState, loadInitialData } = useInitialDataLoader();
 
@@ -65,9 +65,14 @@ export function LoginForm() {
   const isLoadingData = loadingState.isLoading;
   const showLoadingOverlay = isPending || isLoadingData;
 
+  const handleAction = (formData: FormData) => {
+    if (admin) formData.append("admin", admin.toString());
+    formAction(formData);
+  };
+
   return (
     <div className="relative">
-      <form className="space-y-4" action={formAction}>
+      <form className="space-y-4" action={handleAction}>
         <div className="relative w-full">
           <SVG
             name={"user-rounded-gray"}

@@ -18,8 +18,9 @@ export async function loginAction(
 ): Promise<LoginActionResult> {
   const username = String(formData.get("username"));
   const password = String(formData.get("password"));
+  const isAdmin = String(formData.get("admin")) === "true";
 
-  const user = await AuthService.login({ username, password });
+  const user = await AuthService.login({ username, password }, isAdmin);
 
   if (user?.token) {
     await AuthService.setSessionCookies(user);

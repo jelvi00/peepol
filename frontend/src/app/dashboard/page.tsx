@@ -61,23 +61,22 @@ export default function DashboardPage() {
   }, [ getStatusQuery, search, initialPersons ]);
 
   useEffect(() => {
-    wait(500).then(() => {
-      setPage(0);
-      fetchPersons(0, true)
-          .catch(doNothing)
-    });
-  }, [search, statusFilter]);
+
+    if (!initialPersons?.length) fetchPersons(0, true).catch(doNothing);
+
+  }, [ initialPersons ]);
 
   useEffect(() => {
-
-    if (!persons.length) fetchPersons(0, true).catch(doNothing);
-
-  }, [persons]);
+    wait(500).then(() => {
+      setPage(0);
+      fetchPersons(0, true).catch(doNothing);
+    });
+  }, [search, statusFilter]);
 
   const handleLoadMore = useCallback(() => {
     const nextPage = page + 1;
     setPage(nextPage);
-    fetchPersons(nextPage);
+    fetchPersons(nextPage).catch(doNothing);
   }, [ page ]);
 
   return (
@@ -186,7 +185,7 @@ export default function DashboardPage() {
           onClose={() => setShowCreateModal(false)}
           onCreated={() => {
             setPage(0);
-            fetchPersons(0, true);
+            fetchPersons(0, true).catch(doNothing);
             setShowCreateModal(false);
           }}
         />

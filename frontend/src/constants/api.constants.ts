@@ -1,6 +1,7 @@
 export const API_V1 = {
   AUTH: {
     login: "/auth/login",
+    adminLogin: "/admin/auth/login",
   },
   PERSONS: {
     persons: "/persons",

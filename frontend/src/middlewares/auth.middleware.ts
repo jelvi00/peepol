@@ -5,7 +5,7 @@ export async function AuthMiddleware(request: NextRequest) {
 
     const { pathname } = request.nextUrl;
 
-    if (["/login"].includes(pathname)) return NextResponse.next();
+    if ([ "/login", "/admin/login" ].includes(pathname)) return NextResponse.next();
 
     const session = Boolean(await AuthService.getAuthToken());
 
