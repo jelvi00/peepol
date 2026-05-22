@@ -140,4 +140,28 @@ class PersonControllerITest extends ControllerIT {
                 .body("size()", greaterThanOrEqualTo(1))
                 .body("[0].name", containsString("Searchable"));
     }
+
+    @Test
+    void findAllByStatusInReturnsDisabledPersons() {
+        // Given: One enabled person and one disabled person
+        Person enabled = Person.builder().name("Enabled Person").phoneNumber("111111111").build();
+        enabled.setStatus(Status.ENABLED);
+        personRepo.save(enabled);
+
+        Person disabled = Person.builder().name("Disabled Person").phoneNumber("000000000").build();
+        disabled.setStatus(Status.DISABLED);
+        personRepo.save(disabled);
+
+        // When: Querying for both statuses (0 and 1)
+        given()
+                .header("Authorization", "Bearer " + token)
+                .queryParam("status", "0,1")
+        .when()
+                .get("/persons")
+        .then()
+                .statusCode(200)
+                .body("size()", equalTo(2))
+                .body("name", hasItems("Enabled Person", "Disabled Person"))
+                .body("status", hasItems("ENABLED", "DISABLED"));
+    }
 }
