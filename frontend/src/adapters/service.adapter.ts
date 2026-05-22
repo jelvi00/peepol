@@ -22,7 +22,12 @@ export abstract class ServiceAdapter {
         headers?: RawAxiosHeaders
     ) {
 
-        const url = this.adapterConfig.baseUrl + endpoint;
+        let url = this.adapterConfig.baseUrl + endpoint;
+
+        if (method.toUpperCase() === 'GET') {
+            url = this.withQueryParams(url, data);
+            data = undefined;
+        }
 
         try {
 
@@ -46,6 +51,19 @@ export abstract class ServiceAdapter {
                 body: errorResponse?.data || { message: axiosError.message }
             };
         }
+    }
+
+    private withQueryParams(url: string, data?: Record<string, unknown>) {
+
+        if (!data) return url;
+
+        const params = new URLSearchParams();
+
+        Object.entries(data).forEach(([ key, value ]) => {
+            if (value !== undefined && value !== null) params.append(key, String(value));
+        });
+
+        return `${url}?${params.toString()}`;
     }
 
 }

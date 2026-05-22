@@ -81,8 +81,8 @@ public class PersonService {
             throw new IllegalArgumentException("Phone number is not available.");
 
         if (Objects.nonNull(request.name())) byIdPerson.setName(request.name());
-        if (Objects.nonNull(request.phoneNumber())) byIdPerson.setPhoneNumber(request.phoneNumber().toLowerCase());
-        if (Objects.nonNull(request.bio())) byIdPerson.setBio(request.bio().toLowerCase());
+        if (Objects.nonNull(request.phoneNumber())) byIdPerson.setPhoneNumber(request.phoneNumber());
+        if (Objects.nonNull(request.bio())) byIdPerson.setBio(request.bio());
 
         return personRepo.save(byIdPerson);
 
