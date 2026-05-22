@@ -1,5 +1,6 @@
 package org.peepol.config.database;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -13,12 +14,15 @@ import java.util.Optional;
 @EnableJpaAuditing(auditorAwareRef = "auditorProvider")
 public class JPAConfig {
 
+    @Value("${app.system.username:admin}")
+    private String systemUsername;
+
     @Bean
     public AuditorAware<String> auditorProvider() {
         return () -> Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .filter(Authentication::isAuthenticated)
                 .map(Authentication::getName)
-                .map(username -> username.contains("anonymousUser") ? "_system_" : username);
+                .map(username -> username.contains("anonymousUser") ? systemUsername : username);
     }
 
 }

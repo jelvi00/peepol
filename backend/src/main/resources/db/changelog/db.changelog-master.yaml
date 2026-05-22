@@ -51,27 +51,7 @@ databaseChangeLog:
       id: 2
       author: marshall (generated)
       changes:
-        - insert:
-            tableName: users
-            columns:
-              - column:
-                  name: username
-                  value: '_system_'
-              - column:
-                  name: password
-                  value: '$e0801$b7kEyowVMFrrKW2Rif/NYg==$mRSe1dZ909reaFcrd4kK7vJQphcBYdp8z41/3gD852g='
-              - column:
-                  name: role
-                  value: 'ADMIN'
-              - column:
-                  name: status
-                  value: 1
-              - column:
-                  name: created_by
-                  value: '_system_'
-              - column:
-                  name: created_at
-                  valueComputed: 'now()'
+        - empty: {}
   - changeSet:
       id: 3
       author: marshall (generated)

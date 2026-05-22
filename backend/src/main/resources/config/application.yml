@@ -33,3 +33,6 @@ spring:
 app:
   paseto:
     secret_key: ${PASETO_SECRET_KEY:no-key}
+  system:
+    username: ${SYSTEM_USERNAME:no-username}
+    password: ${SYSTEM_PASSWORD:no-pass}
