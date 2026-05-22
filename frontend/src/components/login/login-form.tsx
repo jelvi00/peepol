@@ -115,9 +115,9 @@ export function LoginForm() {
         </button>
 
         <section className="flex items-center justify-center">
-          {state.error && <p className="text-blue-500">{state.error}</p>}
+          {state.error && <p className="text-red-500">{state.error}</p>}
           {loadingState.error && (
-            <p className="text-blue-500">{loadingState.error}</p>
+              <p className="text-red-500">{loadingState.error}</p>
           )}
         </section>
       </form>

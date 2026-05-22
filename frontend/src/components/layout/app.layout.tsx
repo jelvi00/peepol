@@ -2,10 +2,8 @@
 
 import React, { useCallback } from "react";
 import { useSession } from "@/providers/react-app";
-import { logoutAction } from "@/actions/auth.action";
 import { PPEventEmitter } from "@/providers/use-react-app";
 import { EVENT } from "@/constants";
-import { doNothing } from "@/lib";
 import { SVG } from "@/components";
 
 interface AppLayoutProps {
@@ -17,7 +15,6 @@ export function AppLayout({ children }: AppLayoutProps) {
 
   const logout = useCallback(() => {
     PPEventEmitter.emit(EVENT.ON_LOGOUT);
-    logoutAction().catch(doNothing);
   }, []);
 
   return (

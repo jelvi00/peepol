@@ -5,6 +5,7 @@ import { EVENT } from "@/constants";
 import { doNothing, wait } from "@/lib/utils";
 import EventEmitter from "eventemitter3";
 import { getStorageItem, setStorageItem } from "@/lib/session";
+import { logoutAction } from "@/actions/auth.action";
 
 const INITIAL_STATE = {
   session: undefined,
@@ -79,6 +80,7 @@ export function useReactApp() {
   async function onLogout() {
     handleContextChange({ session: undefined });
     setStorageItem("session", undefined);
+    logoutAction().catch(doNothing);
   }
 
   function toggleDialog(component: React.JSX.Element | null | undefined) {
