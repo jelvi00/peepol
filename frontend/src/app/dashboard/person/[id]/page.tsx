@@ -185,7 +185,7 @@ function EditPersonModal({ person, onClose, onUpdated }: { person: Person; onClo
   };
 
   return (
-    <div className="bg-white rounded-2xl w-full max-w-md overflow-hidden">
+    <div className="bg-white rounded-2xl w-full px-5">
       <div className="p-6 border-b">
         <h2 className="text-xl font-sans text-gray-800">Edit Person</h2>
       </div>

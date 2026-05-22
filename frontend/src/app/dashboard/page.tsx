@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { AppLayout } from "@/components/layout";
 import { SVG } from "@/components";
 import { PersonCliService } from "@/services/client/person.cli.service";
@@ -22,7 +22,7 @@ export default function DashboardPage() {
   const [hasMore, setHasMore] = useState(initialPersons ? initialPersons.length === 10 : true);
   const [showCreateModal, setShowCreateModal] = useState(false);
 
-  const getStatusQuery = () => {
+  const getStatusQuery = useCallback(() => {
     const active = [];
     if (statusFilter.enabled) active.push("1");
     if (statusFilter.disabled) active.push("0");
@@ -30,9 +30,9 @@ export default function DashboardPage() {
 
     if (active.length === 0 || active.length === 2) return "0,1";
     return active[0];
-  };
+  }, [ statusFilter.enabled, statusFilter.disabled ]);
 
-  const fetchPersons = async (pageNum: number, isNewSearch = false) => {
+  const fetchPersons = useCallback(async (pageNum: number, isNewSearch = false) => {
     const currentStatus = getStatusQuery();
 
     if (isNewSearch && pageNum === 0 && search === "" && currentStatus === "1" && initialPersons) {
@@ -41,15 +41,16 @@ export default function DashboardPage() {
     }
 
     setLoading(true);
+
     try {
       const data = search.trim()
-        ? await PersonCliService.searchPersons(search, pageNum, 10, currentStatus)
-        : await PersonCliService.getPersons(pageNum, 10, currentStatus);
+          ? await PersonCliService.searchPersons(search, pageNum, 10, currentStatus)
+          : await PersonCliService.getPersons(pageNum, 10, currentStatus);
 
       if (isNewSearch) {
         setPersons(data);
       } else {
-        setPersons((prev) => [...prev, ...data]);
+        setPersons((prev) => [ ...prev, ...data ]);
       }
       setHasMore(data.length === 10);
     } catch (error) {
@@ -57,7 +58,7 @@ export default function DashboardPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [ getStatusQuery, search, initialPersons ]);
 
   useEffect(() => {
     wait(500).then(() => {
@@ -67,11 +68,17 @@ export default function DashboardPage() {
     });
   }, [search, statusFilter]);
 
-  const handleLoadMore = () => {
+  useEffect(() => {
+
+    if (!persons.length) fetchPersons(0, true).catch(doNothing);
+
+  }, [persons]);
+
+  const handleLoadMore = useCallback(() => {
     const nextPage = page + 1;
     setPage(nextPage);
     fetchPersons(nextPage);
-  };
+  }, [ page ]);
 
   return (
     <AppLayout>
