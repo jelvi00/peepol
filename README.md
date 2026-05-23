@@ -58,6 +58,8 @@ The system includes an administrator user automatically created through database
 - **Registration**: New users can be registered through the API with ADMIN privileges.
 - **Authentication (BE)**: May vary based on role `/admin/auth/login` or `/auth/login`.
 - **Authentication (FE)**: May vary based on role `/admin/login` or `/login`.
+- **Good to know**: Since http cookie is declared as secure, a https connection is required to access the application.
+  See how cookies are managed at `AuthService.setSessionCookies` on the frontend.
 
 *Note: Security is managed via PASETO tokens, which offer a more modern and secure alternative to traditional JWTs.*
 
