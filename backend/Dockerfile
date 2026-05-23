@@ -17,7 +17,7 @@ COPY --chown=gradle:gradle backend/src backend/src
 RUN ./gradlew :backend:build -x test --no-daemon
 
 # Run stage
-FROM eclipse-temurin:25-jdk-alpine
+FROM eclipse-temurin:25-jre-alpine
 
 ARG PORT=4556
 
