@@ -1,0 +1,22 @@
+info:
+  name: Login
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:4556/peepol-api/admin/auth/login
+  body:
+    type: json
+    data: |-
+      {
+        "username": "_system_",
+        "password": "XfDRPXWQmFy9POw0rY+FIakcb3YaAwHw"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

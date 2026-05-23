@@ -1,0 +1,22 @@
+info:
+  name: Search Persons
+  type: http
+  seq: 8
+
+http:
+  method: GET
+  url: http://localhost:4556/peepol-api/persons/search?q=rr
+  headers:
+    - name: Authorization
+      value: Bearer [token]
+  params:
+    - name: q
+      value: rr
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

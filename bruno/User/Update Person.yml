@@ -1,0 +1,28 @@
+info:
+  name: Update Person
+  type: http
+  seq: 6
+
+http:
+  method: PUT
+  url: http://localhost:4556/peepol-api/persons
+  headers:
+    - name: Authorization
+      value: Bearer [token]
+  body:
+    type: json
+    data: |-
+      
+      {
+        "id": "41",
+        "name": "pere pula",
+        "phoneNumber": "809-555-4884",
+        "bio": "bueeeeenas"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

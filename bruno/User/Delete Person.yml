@@ -1,0 +1,18 @@
+info:
+  name: Delete Person
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: http://localhost:4556/peepol-api/persons/2/person
+  headers:
+    - name: Authorization
+      value: Bearer [token]
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,25 @@
+info:
+  name: Registration
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:4556/peepol-api/admin/auth/registration
+  headers:
+    - name: Authorization
+      value: Bearer [token]
+  body:
+    type: json
+    data: |-
+      {
+        "username": "aricardo",
+        "password": "Peepol01!"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

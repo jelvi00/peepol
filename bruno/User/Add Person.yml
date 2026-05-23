@@ -1,0 +1,26 @@
+info:
+  name: Add Person
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: http://localhost:4556/peepol-api/persons
+  headers:
+    - name: Authorization
+      value: Bearer [token]
+  body:
+    type: json
+    data: |-
+      {
+        "name": "pere pol",
+        "phoneNumber": "809-555-4984",
+        "bio": "buenas"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
