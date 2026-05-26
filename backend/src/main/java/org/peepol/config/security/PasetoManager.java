@@ -42,6 +42,14 @@ public class PasetoManager {
         try {
             String decrypted = PasetoLocal.decrypt(secretKey, token, "");
             PasetoPayload payload = objectMapper.readValue(decrypted, PasetoPayload.class);
+
+            if (payload.getExp() != null) {
+                Instant expiration = Instant.parse(payload.getExp());
+                if (expiration.isBefore(Instant.now())) {
+                    return null;
+                }
+            }
+
             return payload.getSub();
         } catch (Exception e) {
             return null;
