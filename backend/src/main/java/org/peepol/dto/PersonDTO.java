@@ -12,7 +12,7 @@ public class PersonDTO {
 
             @NotBlank
             @Size(min = 7, max = 20)
-            @Pattern(regexp = "^[0-9+\\-()\\s]+$", message = "Phone number can only contain digits, +, -, (), and spaces")
+            @Pattern(regexp = "^[0-9+\\s]+$", message = "Phone number can only contain digits, +, and spaces")
             String phoneNumber,
 
             @Size(max = 500) String bio
@@ -24,7 +24,7 @@ public class PersonDTO {
             @Size(min = 3, max = 60) String name,
 
             @Size(min = 7, max = 20)
-            @Pattern(regexp = "^[0-9+\\-()\\s]+$", message = "Phone number can only contain digits, +, -, (), and spaces")
+            @Pattern(regexp = "^[0-9+\\s]+$", message = "Phone number can only contain digits, +, and spaces")
             String phoneNumber,
 
             @Size(max = 500) String bio

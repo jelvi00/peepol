@@ -1,17 +1,20 @@
 package org.peepol.domain.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.peepol.dto.PersonDTO;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "persons")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 @Builder
 public final class Person extends Audit {
 
@@ -23,6 +26,7 @@ public final class Person extends Audit {
     private String name;
 
     @Column(unique = true, length = 40)
+    @Pattern(regexp = "^[0-9+\\s]+$", message = "Phone number can only contain digits, +, and spaces")
     private String phoneNumber;
 
     @Lob
@@ -32,5 +36,21 @@ public final class Person extends Audit {
 
     public PersonDTO.Response toDTOResponse() {
         return new PersonDTO.Response(id, name, phoneNumber, bio, this.getStatus().toString());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person person)) return false;
+        return Objects.equals(normalize(this.phoneNumber), normalize(person.phoneNumber));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(normalize(phoneNumber));
+    }
+
+    private String normalize(String phone) {
+        return phone == null ? null : phone.replace("+", "").replace(" ", "");
     }
 }

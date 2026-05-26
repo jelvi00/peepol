@@ -73,6 +73,8 @@ databaseChangeLog:
               - column:
                   name: phone_number
                   type: VARCHAR(15)
+                  constraints:
+                    unique: true
               - column:
                   name: bio
                   type: TEXT
