@@ -42,7 +42,7 @@ class AuthServiceTest {
         when(authManager.authenticate(any(UsernamePasswordAuthenticationToken.class))).thenReturn(authentication);
         when(pasetoManager.createToken("testuser")).thenReturn("test-token");
 
-        LoginDTO.Response result = authService.login("testuser", "password", Role.ADMIN);
+        LoginDTO.Response result = authService.login("testuser", "password");
 
         assertNotNull(result);
         assertEquals("test-token", result.token());
@@ -50,24 +50,10 @@ class AuthServiceTest {
     }
 
     @Test
-    void loginWrongRole() {
-        User user = new User();
-        user.setId(1L);
-        user.setUsername("testuser");
-        user.setRole(Role.USER);
-
-        Authentication authentication = mock(Authentication.class);
-        when(authentication.getPrincipal()).thenReturn(user);
-        when(authManager.authenticate(any(UsernamePasswordAuthenticationToken.class))).thenReturn(authentication);
-
-        assertThrows(BadCredentialsException.class, () -> authService.login("testuser", "password", Role.ADMIN));
-    }
-
-    @Test
     void loginBadCredentials() {
         when(authManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
                 .thenThrow(new BadCredentialsException("Bad credentials"));
 
-        assertThrows(BadCredentialsException.class, () -> authService.login("testuser", "password", Role.ADMIN));
+        assertThrows(BadCredentialsException.class, () -> authService.login("testuser", "password"));
     }
 }

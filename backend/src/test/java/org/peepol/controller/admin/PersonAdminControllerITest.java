@@ -41,7 +41,7 @@ class PersonAdminControllerITest extends ControllerIT {
         token = given()
                 .contentType(ContentType.JSON)
                 .body(new LoginDTO.Request("administrator", "AdminPass123!"))
-                .post("/admin/auth/login")
+                .post("/auth/login")
                 .then()
                 .statusCode(200)
                 .extract()
