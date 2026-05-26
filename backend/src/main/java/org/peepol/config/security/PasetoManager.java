@@ -1,6 +1,8 @@
 package org.peepol.config.security;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Data;
 import org.paseto4j.commons.SecretKey;
 import org.paseto4j.commons.Version;
 import org.paseto4j.version4.PasetoLocal;
@@ -8,41 +10,48 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
 @Component
 public class PasetoManager {
 
     private final SecretKey secretKey;
+    private final ObjectMapper objectMapper;
 
-    public PasetoManager(@Value("${app.paseto.secret_key:no-key}") String pasetoKey) {
+    public PasetoManager(
+            @Value("${app.paseto.secret_key:no-key}") String pasetoKey,
+            ObjectMapper objectMapper
+    ) {
         this.secretKey = new SecretKey(pasetoKey.getBytes(), Version.V4);
+        this.objectMapper = objectMapper;
     }
 
     public String createToken(String username) {
-        String payload = "{\"sub\":" + username + ", \"exp\":" + Instant.now().plusSeconds(86400) + "\"}";
-        return PasetoLocal.encrypt(secretKey, payload, "", "");
+        try {
+            PasetoPayload payload = new PasetoPayload();
+            payload.setSub(username);
+            payload.setExp(Instant.now().plus(1, ChronoUnit.DAYS).toString());
+            String jsonPayload = objectMapper.writeValueAsString(payload);
+            return PasetoLocal.encrypt(secretKey, jsonPayload, "", "");
+        } catch (Exception e) {
+            throw new RuntimeException("Error creating token", e);
+        }
     }
 
     public String getSubject(String token) {
         try {
             String decrypted = PasetoLocal.decrypt(secretKey, token, "");
-            int subIndex = decrypted.indexOf("\"sub\":");
-            if (subIndex == -1) return null;
-
-            String afterSub = decrypted.substring(subIndex + 6);
-            int commaIndex = afterSub.indexOf(",");
-            int braceIndex = afterSub.indexOf("}");
-
-            int endIndex;
-            if (commaIndex == -1) endIndex = braceIndex;
-            else if (braceIndex == -1) endIndex = commaIndex;
-            else endIndex = Math.min(commaIndex, braceIndex);
-
-            if (endIndex == -1) return null;
-            return afterSub.substring(0, endIndex);
+            PasetoPayload payload = objectMapper.readValue(decrypted, PasetoPayload.class);
+            return payload.getSub();
         } catch (Exception e) {
             return null;
         }
+    }
+
+    @Data
+    private static class PasetoPayload {
+        private String sub;
+        private String exp;
     }
 
 }

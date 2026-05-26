@@ -1,5 +1,6 @@
 package org.peepol.config.security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ class PasetoManagerTest {
 
     @BeforeEach
     void setUp() {
-        pasetoManager = new PasetoManager(secretKey);
+        pasetoManager = new PasetoManager(secretKey, new ObjectMapper());
     }
 
     @Test
