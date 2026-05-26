@@ -2,9 +2,9 @@ package org.peepol.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.peepol.domain.model.Person;
 import org.peepol.domain.service.PersonService;
 import org.peepol.dto.PersonDTO;
+import org.peepol.mapper.PersonMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +18,7 @@ import java.util.*;
 public class PersonController {
 
     private final PersonService personService;
+    private final PersonMapper personMapper;
 
     @GetMapping()
     public ResponseEntity<List<PersonDTO.Response>> getPersons(
@@ -34,7 +35,7 @@ public class PersonController {
 
         return ResponseEntity.ok(persons.isEmpty()
                 ? Collections.emptyList()
-                : persons.stream().map(Person::toDTOResponse).toList()
+                : persons.stream().map(personMapper::toResponse).toList()
         );
 
     }
@@ -55,7 +56,7 @@ public class PersonController {
 
         return ResponseEntity.ok(persons.isEmpty()
                 ? Collections.emptyList()
-                : persons.stream().map(Person::toDTOResponse).toList()
+                : persons.stream().map(personMapper::toResponse).toList()
         );
     }
 
@@ -67,7 +68,7 @@ public class PersonController {
         var person = personService.getPerson(Long.valueOf(id));
 
         if (Objects.isNull(person)) return ResponseEntity.ok().build();
-        else return ResponseEntity.ok(person.toDTOResponse());
+        else return ResponseEntity.ok(personMapper.toResponse(person));
 
     }
 
@@ -81,7 +82,7 @@ public class PersonController {
                 .body(
                         Objects.isNull(person)
                                 ? null
-                                : person.toDTOResponse()
+                                : personMapper.toResponse(person)
                 );
     }
 
@@ -92,7 +93,7 @@ public class PersonController {
 
         return ResponseEntity.ok(Objects.isNull(person)
                 ? null
-                : person.toDTOResponse()
+                : personMapper.toResponse(person)
         );
     }
 

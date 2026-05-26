@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
-import org.peepol.dto.PersonDTO;
 
 import java.util.Objects;
 
@@ -33,10 +32,6 @@ public final class Person extends Audit {
     @JdbcTypeCode(SqlTypes.LONGVARCHAR)
     @Column(columnDefinition = "TEXT")
     private String bio;
-
-    public PersonDTO.Response toDTOResponse() {
-        return new PersonDTO.Response(id, name, phoneNumber, bio, this.getStatus().toString());
-    }
 
     @Override
     public boolean equals(Object o) {
