@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect, use, useCallback } from "react";
 import { AppLayout } from "@/components/layout";
 import { SVG } from "@/components";
 import { PersonCliService } from "@/services/client/person.cli.service";
@@ -8,11 +8,14 @@ import { Person } from "@/types";
 import { useRouter } from "next/navigation";
 import { Dialog } from "@/components/ui/dialog";
 import { doNothing } from "@/lib";
+import { useSession } from "@/providers";
+import { Role } from "@/enums";
 
 export default function PersonDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
   const paramId = use(params).id;
   const id = parseInt(paramId);
+  const session = useSession();
 
   if (isNaN(id)) {
     router.push("/dashboard");
@@ -22,6 +25,55 @@ export default function PersonDetailPage({ params }: { params: Promise<{ id: str
   const [person, setPerson] = useState<Person | null>(null);
   const [loading, setLoading] = useState(true);
   const [showEditModal, setShowEditModal] = useState(false);
+
+  const showStatusBadge = useCallback(() => {
+
+    if (!person) return null;
+
+    return (
+        <div>
+          <h1 className="text-3xl font-sans text-gray-800 mb-1">{person.name}</h1>
+          <p className="text-xl text-medium-grey font-light">{person.phoneNumber}</p>
+          <div className="mt-4 flex gap-2">
+            {person.status !== 'DISABLED' ? null :
+                <span className="mt-2 inline-block px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded">
+                       Inactive
+                    </span>
+            }
+            {person.status !== 'ENABLED' ? null :
+                <span className="mt-2 inline-block px-2 py-1 bg-blue-100 text-blue-500 text-xs rounded">
+                        Active
+                      </span>
+            }
+          </div>
+        </div>
+    )
+  }, [ person ]);
+
+  const showActionButtons = useCallback(() => {
+
+    if (!person) return null;
+
+    return person.status === 'DISABLED' ? null : (
+        <div className="flex gap-3">
+          {session?.username}
+          <button
+              onClick={() => setShowEditModal(true)}
+              className="px-6 py-2 border border-gray-200 rounded-lg font-sans text-gray-600 hover:bg-gray-50 transition-colors">
+            Edit
+          </button>
+          {
+            session?.role !== Role.ADMIN ? null : (
+                <button
+                    onClick={handleDelete}
+                    className="px-6 py-2 bg-blue-50 text-blue-500 rounded-lg font-sans hover:bg-blue-100 transition-colors">
+                  Delete
+                </button>
+            )
+          }
+        </div>
+    )
+  }, [ person ]);
 
   const fetchPerson = async () => {
     setLoading(true);
@@ -39,7 +91,7 @@ export default function PersonDetailPage({ params }: { params: Promise<{ id: str
     fetchPerson();
   }, [id]);
 
-  const handleDelete = async () => {
+  const handleDelete = useCallback(async () => {
     if (window.confirm("Are you sure you want to delete this person?")) {
       try {
         await PersonCliService.deletePerson(id);
@@ -49,7 +101,7 @@ export default function PersonDetailPage({ params }: { params: Promise<{ id: str
         alert("Error deleting person");
       }
     }
-  };
+  }, []);
 
   if (loading) {
     return (
@@ -99,37 +151,8 @@ export default function PersonDetailPage({ params }: { params: Promise<{ id: str
 
           <div className="pt-12 px-8 pb-8">
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-              <div>
-                <h1 className="text-3xl font-sans text-gray-800 mb-1">{person.name}</h1>
-                <p className="text-xl text-medium-grey font-light">{person.phoneNumber}</p>
-                <div className="mt-4 flex gap-2">
-                  {person.status !== 'DISABLED' ? null :
-                      <span className="mt-2 inline-block px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded">
-                       Inactive
-                    </span>
-                  }
-                  {person.status !== 'ENABLED' ? null :
-                      <span className="mt-2 inline-block px-2 py-1 bg-blue-100 text-blue-500 text-xs rounded">
-                        Active
-                      </span>
-                  }
-                </div>
-              </div>
-
-              {person.status === 'DISABLED' ? null :
-                <div className="flex gap-3">
-                  <button
-                      onClick={() => setShowEditModal(true)}
-                      className="px-6 py-2 border border-gray-200 rounded-lg font-sans text-gray-600 hover:bg-gray-50 transition-colors">
-                    Edit
-                  </button>
-                  <button
-                      onClick={handleDelete}
-                      className="px-6 py-2 bg-blue-50 text-blue-500 rounded-lg font-sans hover:bg-blue-100 transition-colors">
-                    Delete
-                  </button>
-                </div>
-              }
+              {showStatusBadge()}
+              {showActionButtons()}
             </div>
 
             <div className="mt-12 space-y-8">

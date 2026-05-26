@@ -17,8 +17,17 @@ test.describe('Person CRUD Operations', () => {
 
     await context.addCookies([
       { name: 'authToken', value: 'fake-token', domain: 'localhost', path: '/' },
-      { name: 'authRole', value: 'USER', domain: 'localhost', path: '/' }
+      { name: 'authRole', value: 'ADMIN', domain: 'localhost', path: '/' }
     ]);
+
+    await page.addInitScript(() => {
+      window.sessionStorage.setItem('session', JSON.stringify({
+        token: 'fake-token',
+        role: 'ADMIN',
+        username: 'admin',
+        id: 1
+      }));
+    });
 
     // Mock API Routes for persons
     await page.route('**/api/persons**', async (route) => {
@@ -199,5 +208,37 @@ test.describe('Person CRUD Operations', () => {
     await page.locator('label', { hasText: 'Inactive' }).click();
     await page.waitForTimeout(1000);
     await expect(page.locator('span > span', { hasText: 'Inactive' })).toBeVisible();
+  });
+
+  test('should not show delete button for non-admin users', async ({ page, context }) => {
+
+    await context.clearCookies();
+    await page.evaluate(() => window.sessionStorage.clear());
+
+    await context.addCookies([
+      { name: 'authToken', value: 'fake-token', domain: 'localhost', path: '/' },
+      { name: 'authRole', value: 'USER', domain: 'localhost', path: '/' }
+    ]);
+
+    await page.addInitScript(() => {
+      window.sessionStorage.setItem('session', JSON.stringify({
+        token: 'fake-user-token',
+        role: 'USER',
+        username: 'user',
+        id: 3
+      }));
+    });
+
+    await page.reload();
+
+    // Go to first-person detail
+    await page.locator('div.grid > a').first().click();
+    await expect(page).toHaveURL(/.*person\/\d+/);
+
+    // Verify delete button is NOT visible
+    await expect(page.getByRole('button', { name: /Delete/i })).not.toBeVisible();
+
+    // Verify Edit button IS visible
+    await expect(page.getByRole('button', { name: /Edit/i })).toBeVisible();
   });
 });
