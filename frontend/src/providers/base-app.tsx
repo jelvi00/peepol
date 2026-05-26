@@ -11,7 +11,7 @@ import { EnvironmentProvider } from "./environment-provider";
  */
 export default function BaseApp({ children }: { children: React.ReactNode }) {
     const env = {
-        NXT_PUBLIC_xd: "xd",
+        //add custom public variables
     };
 
     return (
