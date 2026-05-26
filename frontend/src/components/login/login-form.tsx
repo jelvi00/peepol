@@ -22,7 +22,7 @@ const initialState: LoginState = {
   content: { user: {} },
 };
 
-export function LoginForm({ admin }: { admin?: boolean }) {
+export function LoginForm() {
   const router = useRouter();
   const { loadingState, loadInitialData } = useInitialDataLoader();
 
@@ -66,7 +66,6 @@ export function LoginForm({ admin }: { admin?: boolean }) {
   const showLoadingOverlay = isPending || isLoadingData;
 
   const handleAction = (formData: FormData) => {
-    if (admin) formData.append("admin", admin.toString());
     formAction(formData);
   };
 

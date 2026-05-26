@@ -1,7 +1,6 @@
 package org.peepol.domain.service;
 
 import org.peepol.config.security.PasetoManager;
-import org.peepol.domain.enums.Role;
 import org.peepol.domain.model.User;
 import org.peepol.dto.LoginDTO;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +12,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
-
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -25,7 +22,7 @@ public class AuthService {
     private final AuthenticationManager authManager;
 
 
-    public LoginDTO.Response login(String username, String password, Role currentRole) {
+    public LoginDTO.Response login(String username, String password) {
 
         try {
             Authentication authentication = authManager.authenticate(
@@ -33,9 +30,6 @@ public class AuthService {
             );
 
             User user = (User) authentication.getPrincipal();
-
-            if (!Objects.equals(user.getRole(), currentRole))
-                throw new IllegalAccessException("Unable to complete login.");
 
             logger.info("Login succeed for user: [{}]", user.getUsername());
 

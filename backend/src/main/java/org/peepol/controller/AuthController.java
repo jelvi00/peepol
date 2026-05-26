@@ -1,6 +1,5 @@
 package org.peepol.controller;
 
-import org.peepol.domain.enums.Role;
 import org.peepol.domain.service.AuthService;
 import org.peepol.dto.LoginDTO;
 import jakarta.validation.Valid;
@@ -24,6 +23,6 @@ public class AuthController {
     public ResponseEntity<LoginDTO.Response> login(@Valid @RequestBody LoginDTO.Request request) {
 
         if (Objects.isNull(request)) throw new IllegalArgumentException();
-        return ResponseEntity.ok(authService.login(request.username(), request.password(), Role.USER));
+        return ResponseEntity.ok(authService.login(request.username(), request.password()));
     }
 }

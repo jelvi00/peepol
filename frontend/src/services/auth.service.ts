@@ -3,7 +3,7 @@ import { PPServiceAdapter } from "@/adapters";
 import type { Session } from "@/types";
 import { HttpStatusCode } from "axios";
 
-const { login, adminLogin } = API_V1.AUTH;
+const { login } = API_V1.AUTH;
 
 async function getCookies() {
   const { cookies } = await import("next/headers");
@@ -67,12 +67,8 @@ export const AuthService = Object.freeze({
     }
   },
 
-  async login(credentials: { username: string; password: string }, isAdmin = false) {
-    const response = await PPServiceAdapter.request(
-        "POST",
-        isAdmin ? adminLogin : login,
-        credentials
-    );
+  async login(credentials: { username: string; password: string }) {
+    const response = await PPServiceAdapter.request("POST", login, credentials);
 
     if (response?.status === HttpStatusCode.Ok) return response.body;
 
