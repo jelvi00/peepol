@@ -164,4 +164,18 @@ class PersonControllerITest extends ControllerIT {
                 .body("name", hasItems("Enabled Person", "Disabled Person"))
                 .body("status", hasItems("ENABLED", "DISABLED"));
     }
+
+    @Test
+    void addPersonInvalidPhoneNumber() {
+        PersonDTO.AddRequest addRequest = new PersonDTO.AddRequest("Invalid Phone", "123-456", "Bio");
+
+        given()
+                .header("Authorization", "Bearer " + token)
+                .contentType(ContentType.JSON)
+                .body(addRequest)
+        .when()
+                .post("/persons")
+        .then()
+                .statusCode(400);
+    }
 }
