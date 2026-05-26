@@ -28,7 +28,7 @@ public class DataInitializerConfig {
 
     @Bean
     public CommandLineRunner initData() {
-        return _ -> {
+        return args -> {
             if (userRepo.findByUsername(systemUsername).isEmpty()) {
                 log.info("Initializing default admin user: {}", systemUsername);
                 User admin = new User();

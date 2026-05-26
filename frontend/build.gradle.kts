@@ -1,16 +1,14 @@
 import com.github.gradle.node.pnpm.task.PnpmTask
 
 plugins {
-    id("com.github.node-gradle.node") version "7.1.0"
+    id("peepol.node-conventions")
+    id("com.github.node-gradle.node") version Versions.NODE_PLUGIN
 }
 
-group = "org.peepol"
-version = "1.0-SNAPSHOT"
-
 node {
-    version.set("22.22.0")
+    version.set(Versions.NODE)
     download.set(true)
-    pnpmVersion.set("10")
+    pnpmVersion.set(Versions.PNPM)
     nodeProjectDir.set(layout.projectDirectory)
 }
 
