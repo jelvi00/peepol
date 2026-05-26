@@ -11,7 +11,7 @@ COPY --chown=gradle:gradle buildSrc buildSrc
 COPY --chown=gradle:gradle backend/build.gradle.kts backend/
 
 # Prefetch dependencies to cache them in a layer
-RUN ./gradlew :backend:dependencies --no-daemon > /dev/null || true
+RUN ./gradlew :backend:dependencies --no-daemon || true
 
 # Copy source code and build
 COPY --chown=gradle:gradle backend/src backend/src

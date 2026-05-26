@@ -1,7 +1,7 @@
 plugins {
-    id("peepol.java-conventions")
+    id("peepol.spring-library-conventions")
+    id("peepol.junit-conventions")
     id("org.springframework.boot") version Versions.SPRING_BOOT
-    id("io.spring.dependency-management") version Versions.SPRING_DEPENDENCY_MANAGEMENT
 }
 
 springBoot {
@@ -23,7 +23,10 @@ dependencies {
 
     implementation("org.liquibase:liquibase-core")
 
+    implementation("org.mapstruct:mapstruct:${Versions.MAPSTRUCT}")
+    annotationProcessor("org.mapstruct:mapstruct-processor:${Versions.MAPSTRUCT}")
+    annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
+
     testImplementation("com.h2database:h2")
     testImplementation("io.rest-assured:rest-assured")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
