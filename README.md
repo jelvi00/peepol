@@ -35,7 +35,7 @@ The simplest way to get the entire ecosystem up and running is by using **Docker
 ## 🛠️ Technologies Used
 
 ### Backend
-- **Java 25** with **Spring Boot 3.5**.
+- **Java 21** with **Spring Boot 3.5**.
 - **Spring Security** with **PASETO** (Platform-Agnostic Security Tokens) authentication.
 - **Liquibase** for database version control.
 - **PostgreSQL 16** as the main database.
@@ -56,8 +56,8 @@ The system includes an administrator user automatically created through database
 
 - **Default System User**: `[configure it in .env]`
 - **Registration**: New users can be registered through the API with ADMIN privileges.
-- **Authentication (BE)**: May vary based on role `/admin/auth/login` or `/auth/login`.
-- **Authentication (FE)**: May vary based on role `/admin/login` or `/login`.
+- **Authentication (BE)**: `/auth/login`.
+- **Authentication (FE)**: `/login`.
 - **Good to know**: Since http cookie is declared as secure, a https connection is required to access the application.
   See how cookies are managed at `AuthService.setSessionCookies` on the frontend.
 
@@ -68,7 +68,7 @@ The system includes an administrator user automatically created through database
 ## 🧪 Testing
 
 ### Backend
-Run the full suite of unit and integr[opencollection.yml](../../Documents/bruno/ME/opencollection.yml)ation tests:
+Run the full suite of unit and integration tests:
 ```bash
 ./gradlew :backend:test
 ```
@@ -99,7 +99,7 @@ Make sure the backend is running before executing requests.
 ## 🐳 Dockerization
 
 Each module has its own optimized `Dockerfile` (multi-stage builds) for production:
-- **Backend**: Lightweight image based on JRE 25 with a non-root user.
+- **Backend**: Lightweight image based on JRE 21 with a non-root user.
 - **Frontend**: Uses Next.js `standalone` mode to minimize image size.
 
 To stop all services:
