@@ -107,23 +107,30 @@ class PersonControllerITest extends ControllerIT {
         .then()
                 .statusCode(200)
                 .body("name", equalTo("Alice Updated"));
+    }
 
-        // Delete
+    @Test
+    void userCannotDeletePerson() {
+        // Create a person first
+        Person person = Person.builder().name("To Be Deleted").phoneNumber("999888777").build();
+        person = personRepo.save(person);
+        Long id = person.getId();
+
+        // Try to delete via /persons (which no longer exists)
         given()
                 .header("Authorization", "Bearer " + token)
         .when()
                 .delete("/persons/" + id + "/person")
         .then()
-                .statusCode(200);
+                .statusCode(anyOf(is(404), is(405)));
 
-        // Verify deleted (status should be DISABLED)
+        // Try to delete via /admin/persons (which requires ADMIN role)
         given()
                 .header("Authorization", "Bearer " + token)
         .when()
-                .get("/persons/" + id + "/detail")
+                .delete("/admin/persons/" + id + "/person")
         .then()
-                .statusCode(200)
-                .body("status", equalTo("DISABLED"));
+                .statusCode(403);
     }
 
     @Test

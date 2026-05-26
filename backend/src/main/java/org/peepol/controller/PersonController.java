@@ -96,15 +96,4 @@ public class PersonController {
         );
     }
 
-    @DeleteMapping("/{id}/person")
-    public ResponseEntity<PersonDTO.Response> removePerson(@PathVariable String id) {
-
-        var person = personService.removePerson(Long.valueOf(id));
-
-        return ResponseEntity.ok(Objects.isNull(person)
-                ? null
-                : person.toDTOResponse()
-        );
-    }
-
 }
