@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
+                        .anyRequest().hasRole("USER")
                 )
                 .addFilterBefore(pasetoAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
