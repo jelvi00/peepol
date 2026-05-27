@@ -56,7 +56,6 @@ export default function PersonDetailPage({ params }: { params: Promise<{ id: str
 
     return person.status === 'DISABLED' ? null : (
         <div className="flex gap-3">
-          {session?.username}
           <button
               onClick={() => setShowEditModal(true)}
               className="px-6 py-2 border border-gray-200 rounded-lg font-sans text-gray-600 hover:bg-gray-50 transition-colors">
