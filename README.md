@@ -36,7 +36,9 @@ The simplest way to get the entire ecosystem up and running is by using **Docker
 
 ### Backend
 - **Java 21** with **Spring Boot 3.5**.
+- **Gradle Convention Plugins**: Centralized build logic using Kotlin DSL in `buildSrc`.
 - **Spring Security** with **PASETO** (Platform-Agnostic Security Tokens) authentication.
+- **MapStruct 1.6** for efficient Entity-DTO mapping.
 - **Liquibase** for database version control.
 - **PostgreSQL 16** as the main database.
 - **Gradle** as the dependency and build manager.
@@ -89,8 +91,8 @@ The project includes a [Bruno](https://www.usebruno.com/) collection for testing
 2.  Open Bruno and select **"Open Collection"**.
 3.  Browse to the `bruno` folder in the root of this project.
 4.  The collection includes:
-    -   **Admin**: Login and Registration for administrative tasks.
-    -   **User**: Complete CRUD operations for Person management (Get, Search, Add, Update, Delete).
+    -   **Admin**: Login, Registration, Person Deletion, and Platform Status monitoring.
+    -   **User**: Operations for Person management (Get, Search, Add, Update).
 
 Make sure the backend is running before executing requests.
 
