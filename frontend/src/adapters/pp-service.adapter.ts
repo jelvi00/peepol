@@ -30,7 +30,7 @@ class _PPServiceAdapter extends ServiceAdapter {
       AuthService.getAuthRole(),
     ]);
 
-    if (authRole === 'admin') endpoint = '/admin/'.concat(endpoint);
+    if (authRole === 'ADMIN') endpoint = '/admin'.concat(endpoint);
 
     if (!endpoint.includes("/auth/login") && !authToken) {
       console.error(`[PP-ADAPTER] No auth token for ${method} ${endpoint}:`,
