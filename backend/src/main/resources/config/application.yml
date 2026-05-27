@@ -36,3 +36,5 @@ app:
   system:
     username: ${SYSTEM_USERNAME:no-username}
     password: ${SYSTEM_PASSWORD:no-pass}
+  web:
+    url: ${WEBAPP_URL:no-webapp-url}
