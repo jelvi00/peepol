@@ -2,7 +2,6 @@ package org.peepol.config.security;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Data;
 import org.paseto4j.commons.SecretKey;
 import org.paseto4j.commons.Version;
 import org.paseto4j.version4.PasetoLocal;
@@ -28,9 +27,7 @@ public class PasetoManager {
 
     public String createToken(String username) {
         try {
-            PasetoPayload payload = new PasetoPayload();
-            payload.setSub(username);
-            payload.setExp(Instant.now().plus(1, ChronoUnit.DAYS).toString());
+            PasetoPayload payload = new PasetoPayload(username, Instant.now().plus(1, ChronoUnit.DAYS).toString());
             String jsonPayload = objectMapper.writeValueAsString(payload);
             return PasetoLocal.encrypt(secretKey, jsonPayload, "", "");
         } catch (Exception e) {
@@ -43,23 +40,19 @@ public class PasetoManager {
             String decrypted = PasetoLocal.decrypt(secretKey, token, "");
             PasetoPayload payload = objectMapper.readValue(decrypted, PasetoPayload.class);
 
-            if (payload.getExp() != null) {
-                Instant expiration = Instant.parse(payload.getExp());
+            if (payload.exp() != null) {
+                Instant expiration = Instant.parse(payload.exp());
                 if (expiration.isBefore(Instant.now())) {
                     return null;
                 }
             }
 
-            return payload.getSub();
+            return payload.sub();
         } catch (Exception e) {
             return null;
         }
     }
 
-    @Data
-    private static class PasetoPayload {
-        private String sub;
-        private String exp;
-    }
+    private record PasetoPayload(String sub, String exp) {}
 
 }
