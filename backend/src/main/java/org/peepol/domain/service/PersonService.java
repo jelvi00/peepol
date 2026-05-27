@@ -48,13 +48,13 @@ public class PersonService {
 
     public Person addPerson(PersonDTO.AddRequest request) {
 
-        if (personRepo.existsByPhoneNumber(request.phoneNumber().toLowerCase()))
+        if (personRepo.existsByPhoneNumber(request.phoneNumber()))
             throw new IllegalArgumentException("Phone Number is not available.");
 
         return personRepo.save(
                 Person.builder()
                         .name(request.name())
-                        .phoneNumber(request.phoneNumber().toLowerCase())
+                        .phoneNumber(request.phoneNumber())
                         .bio(request.bio())
                         .build()
         );
@@ -73,11 +73,11 @@ public class PersonService {
             throw new IllegalArgumentException("Person is already removed.");
 
         var byPhonePerson = Objects.nonNull(request.phoneNumber())
-                ? personRepo.findByPhoneNumber(request.phoneNumber().toLowerCase())
+                ? personRepo.findByPhoneNumber(request.phoneNumber())
                 : null;
 
         if (Objects.nonNull(byPhonePerson)
-                && !Objects.equals(byPhonePerson.getId().toString(), byIdPerson.getId().toString()))
+                && !Objects.equals(byPhonePerson.getId(), byIdPerson.getId()))
             throw new IllegalArgumentException("Phone number is not available.");
 
         if (Objects.nonNull(request.name())) byIdPerson.setName(request.name());
@@ -102,13 +102,11 @@ public class PersonService {
     }
 
     private Set<Status> parseStatuses(String statuses) {
-        if (Objects.isNull(statuses) || statuses.isBlank()) statuses = "1";
-
-        return statuses.contains(",")
-                ? Arrays.stream(statuses.split(","))
-                .map(s -> Status.fromId(Integer.parseInt(s.trim())))
-                .collect(Collectors.toSet())
-                : Collections.singleton(Status.fromId(Integer.parseInt(statuses)));
+        return Arrays.stream(statuses.split(","))
+                .map(String::trim)
+                .filter(s -> !s.isBlank())
+                .map(s -> Status.fromId(Integer.parseInt(s)))
+                .collect(Collectors.toSet());
     }
 
 }
