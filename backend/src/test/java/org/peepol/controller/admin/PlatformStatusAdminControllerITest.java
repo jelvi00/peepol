@@ -5,13 +5,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.peepol.client.WebAppService;
-import org.peepol.client.response.WebAppHealthResponse;
 import org.peepol.controller.ControllerIT;
 import org.peepol.domain.enums.Role;
 import org.peepol.domain.enums.Status;
 import org.peepol.domain.model.User;
 import org.peepol.domain.repo.UserRepo;
 import org.peepol.dto.LoginDTO;
+import org.peepol.dto.PlatformStatusDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -75,7 +75,7 @@ class PlatformStatusAdminControllerITest extends ControllerIT {
 
     @Test
     void getStatusAsAdminSuccess() {
-        when(webAppService.health()).thenReturn(new WebAppHealthResponse("UP", "Healthy"));
+        when(webAppService.health()).thenReturn(new PlatformStatusDTO.WebAppHealth("UP", "Healthy"));
 
         given()
                 .header("Authorization", "Bearer " + adminToken)
@@ -97,8 +97,8 @@ class PlatformStatusAdminControllerITest extends ControllerIT {
                 .get("/admin/status")
         .then()
                 .statusCode(200)
-                .body("api.status", equalTo("OK"));
-                // web field might be null depending on mapper, let's check body or just status
+                .body("api.status", equalTo("OK"))
+                .body("web.status", equalTo("DOWN"));
     }
 
     @Test

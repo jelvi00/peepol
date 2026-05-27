@@ -1,6 +1,6 @@
 package org.peepol.client;
 
-import org.peepol.client.response.WebAppHealthResponse;
+import org.peepol.dto.PlatformStatusDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface WebAppService {
 
     @GetMapping(value = "/api/health", produces = "application/json")
-    WebAppHealthResponse health();
+    PlatformStatusDTO.WebAppHealth health();
 
 }
