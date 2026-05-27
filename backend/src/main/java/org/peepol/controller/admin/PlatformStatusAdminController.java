@@ -19,7 +19,7 @@ public class PlatformStatusAdminController {
 
     private final WebAppService webAppService;
 
-    @GetMapping()
+    @GetMapping
     ResponseEntity<PlatformStatusDTO.Response> getStatus() {
 
         var apiHealth = new PlatformStatusDTO.APIHealth("OK", "API is available.");
@@ -28,8 +28,8 @@ public class PlatformStatusAdminController {
         try {
             webappHealth = webAppService.health();
         } catch (Exception e) {
-            logger.warn("Unable to reach Peepol Web App.");
             webappHealth = new PlatformStatusDTO.WebAppHealth("DOWN", "Web App is unreachable.");
+            logger.error("Error: ", e);
         }
 
         return ResponseEntity.ok(new PlatformStatusDTO.Response(webappHealth, apiHealth));
