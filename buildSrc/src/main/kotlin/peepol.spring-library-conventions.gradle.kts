@@ -6,5 +6,6 @@ plugins {
 dependencyManagement {
     imports {
         mavenBom("org.springframework.boot:spring-boot-dependencies:${Versions.SPRING_BOOT}")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${Versions.SPRING_CLOUD}")
     }
 }
