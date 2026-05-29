@@ -20,10 +20,10 @@ public class DataInitializerConfig {
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
 
-    @Value("${app.system.username:admin}")
+    @Value("${app.system.username}")
     private String systemUsername;
 
-    @Value("${app.system.password:admin123}")
+    @Value("${app.system.password}")
     private String systemPassword;
 
     @Bean
