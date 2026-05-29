@@ -7,6 +7,12 @@ import jakarta.validation.constraints.Size;
 
 public class PersonDTO {
 
+    public interface Request {
+        String name();
+        String phoneNumber();
+        String bio();
+    }
+
     public record AddRequest(
             @NotBlank @Size(min = 3, max = 60) String name,
 
@@ -16,7 +22,7 @@ public class PersonDTO {
             String phoneNumber,
 
             @Size(max = 500) String bio
-    ) {}
+    ) implements Request {}
 
     public record UpdateRequest(
             @NotNull Long id,
@@ -28,7 +34,7 @@ public class PersonDTO {
             String phoneNumber,
 
             @Size(max = 500) String bio
-    ) {}
+    ) implements Request {}
 
     public record Response(
             Long id,

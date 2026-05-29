@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -32,6 +33,9 @@ public final class Person extends Audit {
     @JdbcTypeCode(SqlTypes.LONGVARCHAR)
     @Column(columnDefinition = "TEXT")
     private String bio;
+
+    @OneToMany(mappedBy = "person")
+    List<Wish> wishes;
 
     @Override
     public boolean equals(Object o) {
