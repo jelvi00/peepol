@@ -1,4 +1,4 @@
-package org.peepol.controller;
+package org.peepol.controller.auth;
 
 import org.peepol.domain.service.AuthService;
 import org.peepol.dto.LoginDTO;
@@ -24,8 +24,8 @@ public class AuthController {
 
         if (Objects.isNull(request)) throw new IllegalArgumentException();
         return ResponseEntity.ok(authService.login(
-                request.username().toLowerCase(),
-                request.password().toLowerCase()
+                request.username(),
+                request.password()
         ));
     }
 }

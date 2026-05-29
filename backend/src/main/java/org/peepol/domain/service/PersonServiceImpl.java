@@ -115,9 +115,8 @@ public class PersonServiceImpl implements PersonService {
             byIdPerson = personRepo.findForUpdateById(id)
                     .orElseThrow(() -> new IllegalArgumentException("Person not found."));
         } catch (Exception e) {
-            var message = "Unable to update person, try again later.";
-            log.error(message);
-            throw new RuntimeException(message, e);
+            log.error("Unable to update person, try again later.");
+            throw e;
         }
 
         return byIdPerson;

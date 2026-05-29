@@ -1,4 +1,4 @@
-package org.peepol.controller.admin;
+package org.peepol.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.peepol.client.WebAppService;
@@ -20,7 +20,7 @@ public class PlatformStatusAdminController {
     private final WebAppService webAppService;
 
     @GetMapping
-    ResponseEntity<PlatformStatusDTO.Response> getStatus() {
+    public ResponseEntity<PlatformStatusDTO.Response> getStatus() {
 
         var apiHealth = new PlatformStatusDTO.APIHealth("OK", "API is available.");
         PlatformStatusDTO.WebAppHealth webappHealth;

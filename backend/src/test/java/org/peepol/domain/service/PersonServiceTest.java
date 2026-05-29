@@ -27,7 +27,7 @@ class PersonServiceTest {
     private PersonRepo personRepo;
 
     @InjectMocks
-    private PersonService personService;
+    private PersonServiceImpl personService;
 
     private Person person;
 
@@ -87,7 +87,7 @@ class PersonServiceTest {
     @Test
     void addPersonSuccess() {
         PersonDTO.AddRequest request = new PersonDTO.AddRequest("Jane Doe", "987654321", "Bio");
-        when(personRepo.existsByPhoneNumber(anyString())).thenReturn(false);
+        when(personRepo.existsByPhoneNumberAndIdNot(anyString(), any())).thenReturn(false);
         when(personRepo.save(any(Person.class))).thenReturn(person);
 
         Person result = personService.addPerson(request);
@@ -99,7 +99,7 @@ class PersonServiceTest {
     @Test
     void addPersonAlreadyExists() {
         PersonDTO.AddRequest request = new PersonDTO.AddRequest("Jane Doe", "123456789", "Bio");
-        when(personRepo.existsByPhoneNumber(anyString())).thenReturn(true);
+        when(personRepo.existsByPhoneNumberAndIdNot(anyString(), any())).thenReturn(true);
 
         assertThrows(IllegalArgumentException.class, () -> personService.addPerson(request));
     }
@@ -107,8 +107,8 @@ class PersonServiceTest {
     @Test
     void updatePersonSuccess() {
         PersonDTO.UpdateRequest request = new PersonDTO.UpdateRequest(1L, "John Updated", "123456789", "New Bio");
-        when(personRepo.findById(1L)).thenReturn(Optional.of(person));
-        when(personRepo.findByPhoneNumber(anyString())).thenReturn(person);
+        when(personRepo.findForUpdateById(1L)).thenReturn(Optional.of(person));
+        when(personRepo.existsByPhoneNumberAndIdNot(anyString(), any())).thenReturn(false);
         when(personRepo.save(any(Person.class))).thenReturn(person);
 
         Person result = personService.updatePerson(request);
@@ -121,7 +121,7 @@ class PersonServiceTest {
     @Test
     void updatePersonNotFound() {
         PersonDTO.UpdateRequest request = new PersonDTO.UpdateRequest(1L, "John Updated", "123456789", "New Bio");
-        when(personRepo.findById(1L)).thenReturn(Optional.empty());
+        when(personRepo.findForUpdateById(1L)).thenReturn(Optional.empty());
 
         assertThrows(IllegalArgumentException.class, () -> personService.updatePerson(request));
     }
@@ -130,7 +130,7 @@ class PersonServiceTest {
     void updatePersonDisabled() {
         person.setStatus(Status.DISABLED);
         PersonDTO.UpdateRequest request = new PersonDTO.UpdateRequest(1L, "John Updated", "123456789", "New Bio");
-        when(personRepo.findById(1L)).thenReturn(Optional.of(person));
+        when(personRepo.findForUpdateById(1L)).thenReturn(Optional.of(person));
 
         assertThrows(IllegalArgumentException.class, () -> personService.updatePerson(request));
     }

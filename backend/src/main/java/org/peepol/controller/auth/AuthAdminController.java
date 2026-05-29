@@ -1,4 +1,4 @@
-package org.peepol.controller.admin;
+package org.peepol.controller.auth;
 
 import org.peepol.domain.service.admin.AuthAdminService;
 import org.peepol.dto.RegistrationDTO;
