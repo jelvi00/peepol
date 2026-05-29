@@ -1,4 +1,4 @@
-package org.peepol.controller.admin;
+package org.peepol.controller.person;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 
-@RestController
-@RequestMapping("/admin/persons")
-@RequiredArgsConstructor
-public class PersonAdminController {
 
-    private final PersonService personService;
-    private final PersonMapper personMapper;
+@RequiredArgsConstructor
+public sealed class PersonController permits PersonUserController, PersonAdminController {
+
+    protected final PersonService personService;
+    protected final PersonMapper personMapper;
 
     @GetMapping()
     public ResponseEntity<List<PersonDTO.Response>> getPersons(
@@ -58,12 +57,6 @@ public class PersonAdminController {
     @PutMapping
     public ResponseEntity<PersonDTO.Response> updatePerson(@Valid @RequestBody PersonDTO.UpdateRequest request) {
         var person = personService.updatePerson(request);
-        return ResponseEntity.ok(personMapper.toResponse(person));
-    }
-
-    @DeleteMapping("/{id}/person")
-    public ResponseEntity<PersonDTO.Response> removePerson(@PathVariable Long id) {
-        var person = personService.removePerson(id);
         return ResponseEntity.ok(personMapper.toResponse(person));
     }
 

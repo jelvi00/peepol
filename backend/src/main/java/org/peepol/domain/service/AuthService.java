@@ -40,8 +40,12 @@ public class AuthService {
                     user.getRole().name()
             );
 
-        } catch (Exception e) {
+        } catch (BadCredentialsException e) {
+            logger.error("Bad credentials: ", e);
             throw new BadCredentialsException("Username or password is incorrect.");
+        } catch (Exception e) {
+            logger.error("Error: ", e);
+            throw new RuntimeException("Unable to complete action", e);
         }
 
     }

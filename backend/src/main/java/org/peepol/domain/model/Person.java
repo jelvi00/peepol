@@ -24,7 +24,7 @@ public final class Person extends Audit {
     @Column(nullable = false, length = 30)
     private String name;
 
-    @Column(unique = true, length = 40)
+    @Column(unique = true, length = 15)
     @Pattern(regexp = "^[0-9+\\s]+$", message = "Phone number can only contain digits, +, and spaces")
     private String phoneNumber;
 
