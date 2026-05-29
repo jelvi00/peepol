@@ -51,11 +51,6 @@ databaseChangeLog:
       id: 2
       author: marshall (generated)
       changes:
-        - empty: {}
-  - changeSet:
-      id: 3
-      author: marshall (generated)
-      changes:
         - createTable:
             tableName: persons
             columns:
@@ -95,3 +90,5 @@ databaseChangeLog:
                   type: TIMESTAMP WITHOUT TIME ZONE
   - include:
       file: db/changelog/db.changelog-data-persons.yaml
+  - include:
+      file: db/changelog/db.changelog-add-wishtable-28052026.yaml

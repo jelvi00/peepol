@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: marshall (generated)
+      changes:
+        - createTable:
+            tableName: wishes
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: wish_status
+                  type: VARCHAR(20)
+              - column:
+                  name: person_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_wishes_person
+                    references: persons(id)
+              - column:
+                  name: version
+                  type: BIGINT
+              - column:
+                  name: status
+                  type: SMALLINT
+              - column:
+                  name: created_by
+                  type: VARCHAR(30)
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: updated_by
+                  type: VARCHAR(30)
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP WITHOUT TIME ZONE
