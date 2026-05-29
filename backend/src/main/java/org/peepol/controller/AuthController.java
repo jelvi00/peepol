@@ -23,6 +23,9 @@ public class AuthController {
     public ResponseEntity<LoginDTO.Response> login(@Valid @RequestBody LoginDTO.Request request) {
 
         if (Objects.isNull(request)) throw new IllegalArgumentException();
-        return ResponseEntity.ok(authService.login(request.username(), request.password()));
+        return ResponseEntity.ok(authService.login(
+                request.username().toLowerCase(),
+                request.password().toLowerCase()
+        ));
     }
 }
