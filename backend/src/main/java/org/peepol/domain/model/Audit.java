@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-public abstract sealed class Audit permits Person, User {
+public abstract sealed class Audit permits Person, User, Wish {
 
     @Enumerated
     @Column(nullable = false)
