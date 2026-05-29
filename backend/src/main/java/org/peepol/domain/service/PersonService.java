@@ -1,112 +1,17 @@
 package org.peepol.domain.service;
 
-import org.peepol.domain.enums.Status;
 import org.peepol.domain.model.Person;
-import org.peepol.domain.repo.PersonRepo;
 import org.peepol.dto.PersonDTO;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class PersonService {
+public interface PersonService {
 
-    private final PersonRepo personRepo;
-
-    public List<Person> getAllPersons(String status, int page, int size) {
-
-        Set<Status> statuses = parseStatuses(status);
-
-        return personRepo.findAllByStatusIn(
-                statuses,
-                PageRequest.of(page, size, Sort.by("id").ascending())
-        ).getContent();
-
-    }
-
-    public List<Person> searchPersons(String query, String status, int page, int size) {
-
-        Set<Status> statuses = parseStatuses(status);
-
-        return personRepo.searchWithStatus(
-                statuses,
-                query,
-                PageRequest.of(page, size, Sort.by("id").ascending())
-        ).getContent();
-    }
-
-    public Person getPerson(Long id) {
-
-        return personRepo.findById(id).orElse(null);
-
-    }
-
-    public Person addPerson(PersonDTO.AddRequest request) {
-
-        if (personRepo.existsByPhoneNumber(request.phoneNumber()))
-            throw new IllegalArgumentException("Phone Number is not available.");
-
-        return personRepo.save(
-                Person.builder()
-                        .name(request.name())
-                        .phoneNumber(request.phoneNumber())
-                        .bio(request.bio())
-                        .build()
-        );
-
-    }
-
-    public Person updatePerson(PersonDTO.UpdateRequest request) {
-
-        if (Objects.isNull(request.name()) && Objects.isNull(request.phoneNumber()))
-            throw new IllegalArgumentException("Nothing to do.");
-
-        var byIdPerson = personRepo.findById(request.id())
-                .orElseThrow(() -> new IllegalArgumentException("Person not found."));
-
-        if (byIdPerson.getStatus().equals(Status.DISABLED))
-            throw new IllegalArgumentException("Person is already removed.");
-
-        var byPhonePerson = Objects.nonNull(request.phoneNumber())
-                ? personRepo.findByPhoneNumber(request.phoneNumber())
-                : null;
-
-        if (Objects.nonNull(byPhonePerson)
-                && !Objects.equals(byPhonePerson.getId(), byIdPerson.getId()))
-            throw new IllegalArgumentException("Phone number is not available.");
-
-        if (Objects.nonNull(request.name())) byIdPerson.setName(request.name());
-        if (Objects.nonNull(request.phoneNumber())) byIdPerson.setPhoneNumber(request.phoneNumber());
-        if (Objects.nonNull(request.bio())) byIdPerson.setBio(request.bio());
-
-        return personRepo.save(byIdPerson);
-
-    }
-
-    public Person removePerson(Long id) {
-
-        var person = personRepo.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Person not found"));
-
-        if (person.getStatus().equals(Status.DISABLED))
-            throw new IllegalArgumentException("Person is already removed.");
-
-        person.setStatus(Status.DISABLED);
-
-        return personRepo.save(person);
-    }
-
-    private Set<Status> parseStatuses(String statuses) {
-        return Arrays.stream(statuses.split(","))
-                .map(String::trim)
-                .filter(s -> !s.isBlank())
-                .map(s -> Status.fromId(Integer.parseInt(s)))
-                .collect(Collectors.toSet());
-    }
+    List<Person> getAllPersons(String status, int page, int size);
+    List<Person> searchPersons(String query, String status, int page, int size);
+    Person getPerson(Long id);
+    Person addPerson(PersonDTO.AddRequest request);
+    Person updatePerson(PersonDTO.UpdateRequest request);
+    Person removePerson(Long id);
 
 }
